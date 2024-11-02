@@ -13,10 +13,9 @@ interface NavProps {
     list: string[]; // Assuming `list` is an array of strings
     onDelete: (index: number) => void; // Function that takes an index and returns void
     deleteCart: () => void; // Function that takes no arguments and returns void
-    number: Number
 }
 
-export default function Nav({list, onDelete, deleteCart, number}: NavProps) {
+export default function Nav({list, onDelete, deleteCart}: NavProps) {
 
     const [toggleMenu, setToggleMenu] = useState(false)
     const [toggleCart, setToggleCart] = useState(false)

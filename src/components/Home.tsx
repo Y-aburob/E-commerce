@@ -59,7 +59,7 @@ export default function Home() {
 
     return (
         < >
-            <Nav list = {cart} onDelete={handleDelete} deleteCart ={deleteAll} number= {elements} />
+            <Nav list = {cart} onDelete={handleDelete} deleteCart ={deleteAll} />
             <div className="flex flex-col text-base main font-main sm:pt-4 lg:flex-row lg:px-44 lg:py-20 lg:gap-20">
                 {imgList.map((img, index) => (
                 <div key={index} id={`${index}`} className={`relative mt-20 flex justify-center items-center sm:flex-col gap-8 ${img.id === '0'? 'flex': 'hidden'}`}>
