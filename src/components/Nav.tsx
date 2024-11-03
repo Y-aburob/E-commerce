@@ -7,12 +7,13 @@ import deleteSvg from '../assets/icon-delete.svg'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import '../assets/css/Nav.css'
-
+// import { observer } from 'mobx-react-lite';
+// import {ElementsStore} from '../stores/elementsStore'
 
 interface NavProps {
-    list: string[]; // Assuming `list` is an array of strings
-    onDelete: (index: number) => void; // Function that takes an index and returns void
-    deleteCart: () => void; // Function that takes no arguments and returns void
+    list: string[]; 
+    onDelete: (index: number) => void;
+    deleteCart: () => void;
 }
 
 export default function Nav({list, onDelete, deleteCart}: NavProps) {
