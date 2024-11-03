@@ -1,7 +1,7 @@
 import increase from '../assets/icon-plus.svg'
 import decrease from '../assets/icon-minus.svg'
-import previous from '../assets/icon-previous.svg'
-import next from '../assets/icon-next.svg'
+// import previous from '../assets/icon-previous.svg'
+// import next from '../assets/icon-next.svg'
 
 import thumb1 from '../assets/image-product-1-thumbnail.jpg'
 import thumb2 from '../assets/image-product-2-thumbnail.jpg'
@@ -28,7 +28,7 @@ export default function Home() {
     ])
     
     const [currentImg, setCurrentImg] = useState(img1)
-    const [currentId, setCurrentId] = useState('0')
+    // const [currentId, setCurrentId] = useState('0')
     const [elements, setElements] = useState(0)
     const [key, setKey] = useState(0)
 
@@ -81,7 +81,7 @@ export default function Home() {
                             <img className={`rounded-3xl ${parseInt(img.id) === key? 'scale-125 transition-all duration-[.4s]': 'scale-100'}`} 
                         onClick={() => {
                             setCurrentImg(img.src)
-                            setCurrentId(img.id)
+                            // setCurrentId(img.id)
                             setKey(index)
                         }} 
                         src={img.thumbSrc} alt="thumb" />
