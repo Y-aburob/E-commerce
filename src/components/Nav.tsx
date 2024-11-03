@@ -31,13 +31,8 @@ export default function Nav({list, onDelete, deleteCart}: NavProps) {
     }, []);
 
     const deleteing = () => {
-        if(list.length > 1) {
             deleteCart()
             setToggleCart(false)
-        }
-        else {
-            alert('there is nothing to delete')
-        }
     }
 
     return (  
@@ -79,7 +74,7 @@ export default function Nav({list, onDelete, deleteCart}: NavProps) {
             transition={{duration: .5}}
             exit={{opacity: 0}}
             >
-            <button onClick={deleteing} className='px-4 py-2 text-sm font-[500] transition-all duration-300 rounded-xl bg-liteOrange1 hover:bg-orange mb-5'>Delete All</button>
+            {(list.length > 1)&& <button onClick={deleteing} className='px-4 py-2 text-sm font-[500] transition-all duration-300 rounded-xl bg-liteOrange1 hover:bg-orange mb-5'>Delete All</button>}
             {list.length > 0 ? (
                         list.map((element, index) => (
                             (index !== 0)&&(

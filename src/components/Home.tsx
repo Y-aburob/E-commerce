@@ -65,12 +65,12 @@ export default function Home() {
                 <div key={index} id={`${index}`} className={`relative mt-20 flex justify-center items-center sm:flex-col gap-8 ${img.id === '0'? 'flex': 'hidden'}`}>
                         
                     <img className='sm:max-w-[500px] z-10 sm:rounded-[20px] lg:max-w-[450px]' src={currentImg} alt="currentImg" />
-                    <button onClick={() => setCurrentId(((parseInt(currentId) - 1)).toString())} className="transition-all duration-500 absolute left-0 z-30 h-[70%] bg-lightWhite w-[12%] hover:bg-hoverLightWhite sm:hidden">
+                    {/* <button onClick={() => setCurrentId(((parseInt(currentId) - 1)).toString())} className="transition-all duration-500 absolute left-0 z-30 h-[70%] bg-lightWhite w-[12%] hover:bg-hoverLightWhite sm:hidden">
                         <img className='m-auto sm:max-w-[500px] z-10' src={previous} alt="previous" />
                     </button>
                     <button onClick={() => setCurrentId(((parseInt(currentId) + 1) % 4).toString())} className="transition-all duration-500 absolute right-0 z-30 h-[70%] bg-lightWhite w-[12%] hover:bg-hoverLightWhite sm:hidden">
                         <img className='m-auto sm:max-w-[500px] z-10' src={next} alt="next" />
-                    </button>
+                    </button> */}
                     
                     <div className='hidden gap-8 sm:flex sm:justify-center sm:items-center'>
                     {imgList.map((img, index) => (
@@ -92,8 +92,8 @@ export default function Home() {
                 ))} 
 
                 <div className='flex flex-col p-8 sm:mt-10 lg:justify-evenly'>
-                    <h2 className={`text-DarkGrayishBlue text-base font-bold`}>SNEAKER COMPANY</h2>
-                    <h1 className='my-5 text-xl font-bold leading-10 lg:text-[4rem] lg:leading-tight'>Fall Limited Edition Sneakers</h1>
+                    <h1 className={`text-DarkGrayishBlue text-base font-bold`}>SNEAKER COMPANY</h1>
+                    <h2 className='my-5 text-xl font-bold leading-10 lg:text-[4rem] lg:leading-tight'>Fall Limited Edition Sneakers</h2>
                     <p className='text-DarkGrayishBlue font-[500] mt-5'>
                         These low-profile sneakers are your perfect casual wear companion.
                         Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.
