@@ -69,6 +69,7 @@ export default function Home() {
         
         else {
             setCurrentImg(imgList[0].src)
+            setKey(0)
         }
     }, [isSmallScreen, imgList]);
 
