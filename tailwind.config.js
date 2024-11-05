@@ -18,7 +18,7 @@ export default {
         lightWhite: 'rgba(255, 255, 255, .3)',
         hoverLightWhite: 'rgba(255, 255, 255, .7)',
       },
-
+      // rgb(105,112,125)
       fontFamily: {
         main: '"Kumbh Sans", sans-serif'
       },

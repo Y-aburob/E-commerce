@@ -7,21 +7,16 @@ import deleteSvg from '../assets/icon-delete.svg'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import '../assets/css/Nav.css'
-// import { observer } from 'mobx-react-lite';
-// import {ElementsStore} from '../stores/elementsStore'
+import { observer } from 'mobx-react-lite';
+import {cartStore} from '../stores/elementsStore'
 
-interface NavProps {
-    list: string[]; 
-    onDelete: (index: number) => void;
-    deleteCart: () => void;
-}
 
-export default function Nav({list, onDelete, deleteCart}: NavProps) {
-
+const Nav = observer(() => {
+    
     const [toggleMenu, setToggleMenu] = useState(false)
     const [toggleCart, setToggleCart] = useState(false)
     const [isMdScreen, setIsMdScreen] = useState<boolean>(window.innerWidth >= 768);
-
+    
     useEffect(() => {
         const handleResize = () => {
             setIsMdScreen(window.innerWidth >= 768);
@@ -32,7 +27,7 @@ export default function Nav({list, onDelete, deleteCart}: NavProps) {
     }, []);
 
     const deleteing = () => {
-            deleteCart()
+            cartStore.clearCart()
             setToggleCart(false)
     }
 
@@ -75,14 +70,14 @@ export default function Nav({list, onDelete, deleteCart}: NavProps) {
             transition={{duration: .5}}
             exit={{opacity: 0}}
             >
-            {(list.length > 1)&& <button onClick={deleteing} className='px-4 py-2 text-sm font-[500] transition-all duration-300 rounded-xl bg-liteOrange1 hover:bg-orange mb-5'>Delete All</button>}
-            {list.length > 0 ? (
-                        list.map((element, index) => (
+            {(cartStore.cart.length > 1)&& <button onClick={deleteing} className='px-4 py-2 text-sm font-[500] transition-all duration-300 rounded-xl bg-liteOrange1 hover:bg-orange mb-5'>Delete All</button>}
+            {cartStore.cart.length > 0 ? (
+                        cartStore.cart.map((element, index) => (
                             (index !== 0)&&(
                                 <motion.div key={index} className={`flex justify-between listCart transition-all duration-300 hover:bg-liteOrange rounded-xl p-2`}>
                                     <h1 className='text-sm word-space first-letter:text-base first-letter:text-orange first-letter:font-bold' key={index}>{element}</h1>
                                     <motion.div className='flex gap-4'>
-                                        <button onClick={() => onDelete(index)} id={`${index}`}><img src={deleteSvg} alt="delete" /></button>
+                                        <button onClick={() => cartStore.deleteItem(index)} id={`${index}`}><img src={deleteSvg} alt="delete" /></button>
                                     </motion.div>
                                 </motion.div>
                             )
@@ -90,7 +85,7 @@ export default function Nav({list, onDelete, deleteCart}: NavProps) {
                     ) :
                         ''
                     }
-                    <div className={`w-full h-52 text-center text-lg font-bold mt-24 ${(list.length < 2)? 'block': 'hidden'}`}>
+                    <div className={`w-full h-52 text-center text-lg font-bold mt-24 ${(cartStore.cart.length < 2)? 'block': 'hidden'}`}>
 
                         <h1 className={`m-auto top-0`}>Your Cart Is Empty!</h1>
                         <h2 className={`m-auto text-sm top-0 text-DarkGrayishBlue mt-4`}>Why Not Add Something To Fill It Up?</h2>
@@ -100,13 +95,18 @@ export default function Nav({list, onDelete, deleteCart}: NavProps) {
             </AnimatePresence>
             
             <div className='relative flex items-center justify-center gap-4'>
-                <button className={`relative transition-all duration-500 ${list.length>1? 'animation': ''}`} onClick={() => setToggleCart(!toggleCart)}>
+                <button className={`relative transition-all duration-500 ${cartStore.cart.length>1? 'animation': ''}`} onClick={() => setToggleCart(!toggleCart)}>
+                    <div className={`transition-all duration-500 absolute pt-[.1rem] px-[.5rem] text-white font-bold rounded-[100%] right-1 -top-2 text-center ${cartStore.toggleAnimate? 'animationMove': ''} ${cartStore.cartCount > 0? 'bg-liteOrange1': 'bg-DarkGrayishBlue'}`}>
+                        {cartStore.cartCount}
+                    </div>
                     <img className='w-10 h-10' src={cart} alt="cart" />
-                    </button>
+                </button>
                 <img className='w-14 h-14' src={avatar} alt="logo" />
             </div>
         </div>
             <hr className='lg:mx-36' />
         </div>
     );
-}
+});
+
+export default Nav;

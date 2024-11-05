@@ -1,7 +1,5 @@
 import increase from '../assets/icon-plus.svg'
 import decrease from '../assets/icon-minus.svg'
-// import previous from '../assets/icon-previous.svg'
-// import next from '../assets/icon-next.svg'
 
 import thumb1 from '../assets/image-product-1-thumbnail.jpg'
 import thumb2 from '../assets/image-product-2-thumbnail.jpg'
@@ -16,29 +14,29 @@ import img4 from '../assets/image-product-4.jpg'
 
 import '../assets/css/Home.css'
 import Nav from './Nav'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import {cartStore} from '../stores/elementsStore'
+
 
 export default function Home() {
-    
     const [imgList, _setImgList] = useState([
         { thumbSrc: thumb1, src: img1, id: '0' },
         { thumbSrc: thumb2, src: img2, id: '1' },
         { thumbSrc: thumb3, src: img3, id: '2' },
         { thumbSrc: thumb4, src: img4, id: '3' },
     ])
-    
     const [currentImg, setCurrentImg] = useState(img1)
-    // const [currentId, setCurrentId] = useState('0')
     const [elements, setElements] = useState(0)
     const [key, setKey] = useState(0)
-
-    const [cart, setCart] = useState([''])
-    
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 639);
 
     const addCart = () => {
         if(elements > 0) {
-            setCart(prevItem => [...prevItem, `${elements} SNICKERS`])
+            cartStore.addItem(`${elements} SNICKERS`)
+            cartStore.cartCount += 1;
             setElements(0)
+            cartStore.toggleAnimate = true
         }
         else{
             alert('please choose items first')
@@ -46,31 +44,42 @@ export default function Home() {
     }
 
 
-    const handleDelete = (index: Number) => {
-        setCart(
-            (prevList) => (
-                prevList.filter((_, i) => i !== index)
-            ));
-    };
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth <= 639);
+        };
+        
+        window.addEventListener('resize', handleResize);
+        
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
-    const deleteAll = () => {
-        setCart([''])
-    }
+    useEffect(() => {
+        if (isSmallScreen) {
+            const intervalId = setInterval(() => {
+                setCurrentImg((prevImg) => {
+                    const currentIndex = imgList.findIndex(img => img.src === prevImg);
+                    const nextIndex = (currentIndex + 1) % imgList.length;
+                    return imgList[nextIndex].src;
+                });
+            }, 2200);
+
+            return () => clearInterval(intervalId);
+        }
+        
+        else {
+            setCurrentImg(imgList[0].src)
+        }
+    }, [isSmallScreen, imgList]);
 
     return (
         < >
-            <Nav list = {cart} onDelete={handleDelete} deleteCart ={deleteAll} />
+            <Nav />
             <div className="flex flex-col text-base main font-main sm:pt-4 lg:flex-row lg:px-44 lg:py-20 lg:gap-20">
                 {imgList.map((img, index) => (
                 <div key={index} id={`${index}`} className={`relative mt-20 flex justify-center items-center sm:flex-col gap-8 ${img.id === '0'? 'flex': 'hidden'}`}>
                         
                     <img className='sm:max-w-[500px] z-10 sm:rounded-[20px] lg:max-w-[450px]' src={currentImg} alt="currentImg" />
-                    {/* <button onClick={() => setCurrentId(((parseInt(currentId) - 1)).toString())} className="transition-all duration-500 absolute left-0 z-30 h-[70%] bg-lightWhite w-[12%] hover:bg-hoverLightWhite sm:hidden">
-                        <img className='m-auto sm:max-w-[500px] z-10' src={previous} alt="previous" />
-                    </button>
-                    <button onClick={() => setCurrentId(((parseInt(currentId) + 1) % 4).toString())} className="transition-all duration-500 absolute right-0 z-30 h-[70%] bg-lightWhite w-[12%] hover:bg-hoverLightWhite sm:hidden">
-                        <img className='m-auto sm:max-w-[500px] z-10' src={next} alt="next" />
-                    </button> */}
                     
                     <div className='hidden gap-8 sm:flex sm:justify-center sm:items-center'>
                     {imgList.map((img, index) => (
