@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import '../assets/css/Nav.css'
 import { observer } from 'mobx-react-lite';
 import {cartStore} from '../stores/elementsStore'
+import { Link } from 'react-router-dom'
 
 
 const Nav = observer(() => {
@@ -52,12 +53,13 @@ const Nav = observer(() => {
                 >
                     <button className='p-4 h-fit md:hidden' onClick={() => setToggleMenu(false)}><img src={close} alt="close" /></button>
                     <div className='flex flex-col gap-3 mt-20 font-bold md:flex-row md:mt-0 md:items-end'>
-                        <a className='p-4 text-sm transition-all duration-300 text-DarkGrayishBlue hover:text-darkBlue' href="#">Collections</a>
-                        <a className='p-4 text-sm transition-all duration-300 text-DarkGrayishBlue hover:text-darkBlue' href="#">Men</a>
-                        <a className='p-4 text-sm transition-all duration-300 text-DarkGrayishBlue hover:text-darkBlue' href="#">Women</a>
-                        <a className='p-4 text-sm transition-all duration-300 text-DarkGrayishBlue hover:text-darkBlue' href="#">About</a>
-                        <a className='p-4 text-sm transition-all duration-300 text-DarkGrayishBlue hover:text-darkBlue' href="#">Contact</a>
+                        <Link className='p-4 text-sm transition-all duration-300 text-DarkGrayishBlue hover:text-darkBlue' to="/404">Collections</Link>
+                        <Link className='p-4 text-sm transition-all duration-300 text-DarkGrayishBlue hover:text-darkBlue' to="/404">Men</Link>
+                        <Link className='p-4 text-sm transition-all duration-300 text-DarkGrayishBlue hover:text-darkBlue' to="/404">Women</Link>
+                        <Link className='p-4 text-sm transition-all duration-300 text-DarkGrayishBlue hover:text-darkBlue' to="/404">About</Link>
+                        <Link className='p-4 text-sm transition-all duration-300 text-DarkGrayishBlue hover:text-darkBlue' to="/404">Contact</Link>
                     </div>
+                    
                 </motion.div>
             }
             </AnimatePresence>
