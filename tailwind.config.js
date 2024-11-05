@@ -25,7 +25,7 @@ export default {
       fontSize: {
         sm: '1.2rem',
         base: '1.6rem',
-        navText: '1.5rem',
+        navText: '1.3rem',
         md: '1.8rem',
         lg: '2.0rem',
         xl: '2.4rem',
