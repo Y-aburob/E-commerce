@@ -21,6 +21,7 @@ import {cartStore} from '../stores/elementsStore'
 
 export default function Home() {
     const [imgList, _setImgList] = useState([
+        
         { thumbSrc: thumb1, src: img1, id: '0' },
         { thumbSrc: thumb2, src: img2, id: '1' },
         { thumbSrc: thumb3, src: img3, id: '2' },
@@ -42,7 +43,6 @@ export default function Home() {
             alert('please choose items first')
         }
     }
-
 
     useEffect(() => {
         const handleResize = () => {

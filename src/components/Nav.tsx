@@ -53,11 +53,11 @@ const Nav = observer(() => {
                 >
                     <button className='p-4 h-fit md:hidden' onClick={() => setToggleMenu(false)}><img src={close} alt="close" /></button>
                     <div className='flex flex-col gap-3 mt-20 font-bold md:flex-row md:mt-0 md:items-end'>
-                        <Link className='p-4 transition-all duration-300 text-navText text-DarkGrayishBlue lg:text-md hover:text-darkBlue' to="/404">Collections</Link>
-                        <Link className='p-4 transition-all duration-300 text-navText text-DarkGrayishBlue lg:text-md hover:text-darkBlue' to="/404">Men</Link>
-                        <Link className='p-4 transition-all duration-300 text-navText text-DarkGrayishBlue lg:text-md hover:text-darkBlue' to="/404">Women</Link>
-                        <Link className='p-4 transition-all duration-300 text-navText text-DarkGrayishBlue lg:text-md hover:text-darkBlue' to="/404">About</Link>
-                        <Link className='p-4 transition-all duration-300 text-navText text-DarkGrayishBlue lg:text-md hover:text-darkBlue' to="/404">Contact</Link>
+                        <Link className='p-4 transition-all duration-300 md:p-0 md:mx-4 text-navText text-DarkGrayishBlue lg:text-md hover:text-darkBlue' to="/404">Collections</Link>
+                        <Link className='p-4 transition-all duration-300 md:p-0 md:mx-4 text-navText text-DarkGrayishBlue lg:text-md hover:text-darkBlue' to="/404">Men</Link>
+                        <Link className='p-4 transition-all duration-300 md:p-0 md:mx-4 text-navText text-DarkGrayishBlue lg:text-md hover:text-darkBlue' to="/404">Women</Link>
+                        <Link className='p-4 transition-all duration-300 md:p-0 md:mx-4 text-navText text-DarkGrayishBlue lg:text-md hover:text-darkBlue' to="/404">About</Link>
+                        <Link className='p-4 transition-all duration-300 md:p-0 md:mx-4 text-navText text-DarkGrayishBlue lg:text-md hover:text-darkBlue' to="/404">Contact</Link>
                     </div>
                     
                 </motion.div>
